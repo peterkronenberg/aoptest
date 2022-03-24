@@ -9,58 +9,51 @@
     <name>nexus-skeleton-aop-test</name>
     <description>Sample service</description>
 
-    <parent>
-        <groupId>com.torchai</groupId>
-        <artifactId>nexus-spring-parent</artifactId>
-        <version>1.3.0-SNAPSHOT</version>
-        <relativePath />
-    </parent>
-
-    <scm>
-        <developerConnection>${scmurl}/${project.artifactId}</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
     <dependencies>
         <dependency>
-            <groupId>com.torchai.service</groupId>
-            <artifactId>nexus-service-aop</artifactId>
-            <version>1.3.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.torchai.service</groupId>
-            <artifactId>nexus-service-auth</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.torchai.service</groupId>
-            <artifactId>nexus-service-common</artifactId>
-            <version>2.3.0-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>2.5.9</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.5.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>microservicesaop</id>
-            <url>https://pkgs.dev.azure.com/TorchResearchLLC/Nexus/_packaging/microservicesaop/maven/v1</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.9</version>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <!-- expose info at actuator/info -->
+                            <goal>build-info</goal>
+                        </goals>
+
+                    </execution>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
